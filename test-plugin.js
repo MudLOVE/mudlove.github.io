@@ -1,7 +1,21 @@
 var conversation;
 
-function unassign() {
-  Front.unassign(conversation);
+function getShipInfo() {
+  var request = new XMLHttpRequest();
+
+  request.open('GET', 'https://ssapi.shipstation.com/customers/12345678');
+
+  request.setRequestHeader('Authorization', 'f300958cdab048afb392713e090e7615:a0dc7500bf944a64871a50aed8f80b39');
+
+  request.onreadystatechange = function () {
+    if (this.readyState === 4) {
+      console.log('Status:', this.status);
+      console.log('Headers:', this.getAllResponseHeaders());
+      console.log('Body:', this.responseText);
+    }
+};
+
+request.send();
 }
 
 function toggleArchive() {
